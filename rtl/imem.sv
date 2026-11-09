@@ -1,3 +1,4 @@
+//Instruction memory. Has one read port.
 module imem #(
     parameter int width = 8,
     parameter int depth = 8,
