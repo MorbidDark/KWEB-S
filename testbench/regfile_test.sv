@@ -4,7 +4,7 @@ module regfile_test ();
 	logic [4:0] a1, a2, a3;
 	logic [31:0] wd3, rd1, rd2;
 
-	regfile #(32, 32, 5) dut(clk, we3, a1, a2, a3, wd3, rd1, rd2);
+	regfile_32 dut(clk, we3, a1, a2, a3, wd3, rd1, rd2);
 
 	always begin
 		clk = 1'b0;

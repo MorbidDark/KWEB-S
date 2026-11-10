@@ -1,8 +1,8 @@
 module datapath (
     input logic clk,
     reset,
-    input logic regWrite,
-    input logic ALUSrc,
+    regWrite,
+    ALUSrc,
     resultSrc,
     PCSrc,
     input logic [1:0] immSrc,

@@ -19,7 +19,7 @@ module imem_test();
 
 	//read test vectors from file
 	initial begin
-		$readmemh("test_vectors.txt", testvectors);
+		$readmemh("imem_test_vectors.txt", testvectors);
 		//we start by asserting reset so the posedge clk and set the first test vector before the negedge starts iterating i.
 		i = 0; reset = 1;
 		#22 reset = 0;
