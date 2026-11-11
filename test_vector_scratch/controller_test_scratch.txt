@@ -1,0 +1,59 @@
+inputs are:
+op, func7, zero, func3
+outputs are:
+PCSrc, resultSrc, memWrite, ALUSrc, regWrite, immSrc, ALUControl
+
+lw s0, 0(t1)
+0000011_0000000_0_010__0_1_0_1_1_00_000
+    inputs:
+        flags (regWrite, ALUSrc, resultSrc, PCSrc, immSrc, ALUControl): 1_1_1_0_00_000
+        instr: 000000000000_00110_010_01000
+
+
+sw t0, 0(t1)
+0100011_0000000_0_010__0_0_1_1_0_01_000
+    inputs:
+        flags (regWrite, ALUSrc, resultSrc, PCSrc, immSrc, ALUControl): 0_1_0_0_01_000
+        instr: 0000000_00101_00110_010_00000
+
+add s0, t1, t3
+0110011_0000000_0_000__0_0_0_0_1_00_000
+    inputs:
+        flags (regWrite, ALUSrc, resultSrc, PCSrc, immSrc, ALUControl): 1_0_0_0_00_000
+        instr: 0000000_11100_00110_000_01000
+
+sub s1, t1, t3
+0110011_0100000_0_000__0_0_0_0_1_00_001
+    inputs:
+        flags (regWrite, ALUSrc, resultSrc, PCSrc, immSrc, ALUControl): 1_0_0_0_00_001
+        instr: 0100000_11100_00110_000_01001
+    
+and s2, t1, t2
+0110011_0000000_0_111__0_0_0_0_1_00_010
+    inputs:
+        flags (regWrite, ALUSrc, resultSrc, PCSrc, immSrc, ALUControl): 1_0_0_0_00_010
+        instr: 0000000_00111_00110_111_10010
+
+or s2, t3, t4
+0110011_0000000_0_110__0_0_0_0_1_00_011
+    inputs:
+        flags (regWrite, ALUSrc, resultSrc, PCSrc, immSrc, ALUControl): 1_0_0_0_00_011
+        instr: 0000000_11101_11100_110_10010
+
+slt s2, t0, t3
+0110011_0000000_0_010__0_0_0_0_1_00_101
+    inputs:
+        flags (regWrite, ALUSrc, resultSrc, PCSrc, immSrc, ALUControl): 1_0_0_0_00_101
+        instr: 0000000_11100_00101_010_10010
+
+beq t0, t1, 32
+1100011_0000000_0_000__0_0_0_0_0_11_001
+    inputs:
+        flags (regWrite, ALUSrc, resultSrc, PCSrc, immSrc, ALUControl): 0_0_0_0_11_001
+        instr: 0000001_00110_00101_000_00000
+
+beq t0, s2, 32
+1100011_0000000_1_000__1_0_0_0_0_11_001
+    inputs:
+        flags (regWrite, ALUSrc, resultSrc, PCSrc, immSrc, ALUControl): 0_0_0_1_11_001
+        instr: 0000001_10010_00101_000_00000
