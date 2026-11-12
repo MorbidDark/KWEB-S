@@ -2,7 +2,7 @@
 
 module controller_test();
 
-    logic [27:0] test_vectors[20:0];
+    logic [22:0] test_vectors[20:0];
     logic [9:0] dexpected;
     logic [31:0] i;
 
@@ -44,7 +44,7 @@ module controller_test();
 
     initial begin
         op = 0; func7 = 0; zero = 0; func3 = 0;
-        $readmemh("controller_test_vectors.txt", test_vectors);
+        $readmemb("controller_test_vectors.txt", test_vectors);
         reset = 1'b1; i = 0;
         #100 reset = 1'b0;
     end
@@ -56,12 +56,12 @@ module controller_test();
         if(!reset) begin
             if ({ PCSrc, resultSrc, memWrite, ALUSrc, regWrite, immSrc, ALUControl } !== dexpected) begin
                 $display("%t Error: op = %b, func7 = %b, zero = %b, func3 = %b", $time, op, func7, zero, func3);
-                $display("%t Expected %b, received %b", $time, { PCSrc, resultSrc, memWrite, ALUSrc, regWrite, immSrc, ALUControl }, dexpected);
+                $display("%t Expected %b, received %b", $time, dexpected, { PCSrc, resultSrc, memWrite, ALUSrc, regWrite, immSrc, ALUControl });
             end else
                 $display("%t Success: op = %b", $time, op);
             i = i + 1;
             //If there are no additional tests, stop the testing
-            if(test_vectors[i] === 28'bx) begin
+            if(test_vectors[i] === 23'bx) begin
                 $display("%t Tests completed", $time);
                 $stop;
             end
