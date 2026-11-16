@@ -50,7 +50,7 @@ module datapath_test ();
 
     //flags for lw
     {regWrite, ALUSrc, resultSrc, PCSrc, immSrc, ALUControl} = 9'b1_1_1_0_00_000;
-    
+
     //test lw instructions
     $display("\n\n\nBegin lw testing:");
     instr = 25'b000000000000_00110_010_01000;
@@ -71,16 +71,25 @@ module datapath_test ();
     //flags for sw
     {regWrite, ALUSrc, resultSrc, PCSrc, immSrc, ALUControl} = 9'b0_1_0_0_01_000;
     instr = 25'b0000000_00101_00110_010_00000;
-    #10 $display("%t pc = %d, ALUResult = %d, rfd2 = %d, zero = %b", $time, pc, ALUResult, rfd2, zero);
+    #10
+    $display(
+        "%t pc = %d, ALUResult = %d, rfd2 = %d, zero = %b", $time, pc, ALUResult, rfd2, zero
+    );
     instr = 25'b0000000_10010_11101_010_00110;
-    #10 $display("%t pc = %d, ALUResult = %d, rfd2 = %d, zero = %b", $time, pc, ALUResult, rfd2, zero);
+    #10
+    $display(
+        "%t pc = %d, ALUResult = %d, rfd2 = %d, zero = %b", $time, pc, ALUResult, rfd2, zero
+    );
     instr = 25'b0000000_01001_10100_010_01111;
-    #10 $display("%t pc = %d, ALUResult = %d, rfd2 = %d, zero = %b", $time, pc, ALUResult, rfd2, zero);
-    
+    #10
+    $display(
+        "%t pc = %d, ALUResult = %d, rfd2 = %d, zero = %b", $time, pc, ALUResult, rfd2, zero
+    );
+
     //Begin R-type testing
     $display("\n\n\nBegin R instruction testing:");
     //flags for R-Type
-    { regWrite, ALUSrc, resultSrc, PCSrc, immSrc} = 6'b1_0_0_0_00;
+    {regWrite, ALUSrc, resultSrc, PCSrc, immSrc} = 6'b1_0_0_0_00;
     ALUControl = 3'b000;
     instr = 25'b0000000_11100_00110_000_01000;
     #10 $display("%t pc = %d, ALUResult = %d, zero = %b", $time, pc, ALUResult, zero);
@@ -104,7 +113,7 @@ module datapath_test ();
 
     //Begin branch testing
     $display("\n\n\nBegin branch testing:");
-    { regWrite, ALUSrc, resultSrc, immSrc, ALUControl } = 8'b1_0_0_11_001;
+    {regWrite, ALUSrc, resultSrc, immSrc, ALUControl} = 8'b1_0_0_11_001;
     PCSrc = 1'b0;
     instr = 25'b0000001_00110_00101_000_00000;
     #10 $display("%t pc = %d, ALUResult = %d, zero = %b", $time, pc, $signed(ALUResult), zero);

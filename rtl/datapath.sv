@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module datapath (
     input logic clk,
     reset,

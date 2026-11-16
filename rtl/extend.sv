@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module extend (
     input  logic [31:7] imm,
     input  logic [ 1:0] immSrc,

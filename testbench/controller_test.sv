@@ -2,7 +2,7 @@
 
 module controller_test();
 
-    logic [22:0] test_vectors[20:0];
+    logic [21:0] test_vectors[20:0];
     logic [9:0] dexpected;
     logic [31:0] i;
 
@@ -50,7 +50,7 @@ module controller_test();
     end
 
     always @(posedge clk)
-        if(!reset) { op, func7, zero, func3, dexpected } = test_vectors[i];
+        if(!reset) { op, func7, zero, func3, dexpected } <= test_vectors[i];
     
     always @(negedge clk) begin
         if(!reset) begin
@@ -61,7 +61,7 @@ module controller_test();
                 $display("%t Success: op = %b", $time, op);
             i = i + 1;
             //If there are no additional tests, stop the testing
-            if(test_vectors[i] === 23'bx) begin
+            if(test_vectors[i] === 22'bx) begin
                 $display("%t Tests completed", $time);
                 $stop;
             end

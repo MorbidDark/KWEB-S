@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module regfile_32 (
     input logic clk,
     we3,

@@ -74,7 +74,7 @@ sw s1, 15(s4)
     expected output:
         pc: 24
         ALUResult: 15
-        rfd2: 6969
+        rfd2: 4242
         zero: 0
 
 add s0, t1, t3

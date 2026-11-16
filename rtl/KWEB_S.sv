@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module KWEB_S (
     input logic clk,
     reset,
