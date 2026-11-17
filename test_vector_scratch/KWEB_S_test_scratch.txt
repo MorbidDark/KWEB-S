@@ -1,13 +1,63 @@
-initial registers:
-x5 t0 = 0
-x6 t1 = 69
-x7 t2 = 6969
-x28 t3 = 696969
-x29 t4 = 69696969
-
 x8 s0
 x9 s1
 x18 s2 
+
+addi t0, zero, 0
+    inputs:
+        instr: 000000000000_00000_000_00101_0010011
+        readData: x
+    expected output:
+        memWrite: 0
+        memAddress: x
+        memData: x
+        pc: 0
+
+addi t1, zero, 69
+    inputs:
+        instr: 000001000101_00000_000_00110_0010011
+        readData: x
+    expected output:
+        memWrite: 0
+        memAddress: x
+        memData: x
+        pc: +4
+
+addi t2, zero, 67
+    inputs:
+        instr: 000001000011_00000_000_00111_0010011
+        readData: x
+    expected output:
+        memWrite: 0
+        memAddress: x
+        memData: x
+        pc: 0
+
+addi t3, t1, 351
+    inputs:
+        instr: 000101011111_00110_000_11100_0010011
+        readData: x
+    expected output:
+        memWrite: 0
+        memAddress: x
+        memData: x
+        pc: 0
+
+addi t4, t3, -393
+    inputs:
+        instr: 111001110111_11100_000_11101_0010011
+        readData: x
+    expected output:
+        memWrite: 0
+        memAddress: x
+        memData: x
+        pc: 0
+
+registers should now be 
+x5 t0 = 0
+x6 t1 = 69
+x7 t2 = 67
+x28 t3 = 420
+x29 t4 = 27
 
 lw s0, 0(t1)    
     inputs:
@@ -17,7 +67,7 @@ lw s0, 0(t1)
         memWrite: 0
         memAddress: 69
         memData:x
-        pc: 4
+        pc: +4
 
 lw s1, 5(t2)
     inputs:
@@ -25,9 +75,9 @@ lw s1, 5(t2)
         readData: 4242
     expected output:
         memWrite: 0
-        memAddress: 6974
+        memAddress: 72
         memData: x
-        pc: 8
+        pc: +4
 
 lw s2, 3(t3)
     inputs:
@@ -35,9 +85,9 @@ lw s2, 3(t3)
         readData: 424242
     expected output:
         memWrite: 0
-        memAddress: 696972
+        memAddress: 423
         memData: x
-        pc: 12
+        pc: +4
 
 s0, s1, and s2 should now be 42, 4242, and 424242 respectively.
 
@@ -49,7 +99,7 @@ sw t0, 0(t1)
         memWrite: 1
         memAddress: 69
         memData: 0
-        pc: 16
+        pc: +4
 
 sw s2, 6(t4)
     inputs:
@@ -57,9 +107,9 @@ sw s2, 6(t4)
         readData: x
     expected output:
         memWrite: 1
-        memAddress: 69696976
+        memAddress: 33
         memData: 424242
-        pc: 20
+        pc: +4
 
 sw s1, 15(s4)
     inputs:
@@ -69,7 +119,7 @@ sw s1, 15(s4)
         memWrite: 1
         memAddress: 15
         memData: 4242
-        pc: 24
+        pc: +4
 
 add s0, t1, t3
     inputs:
@@ -79,7 +129,7 @@ add s0, t1, t3
         memWrite: 0
         memAddress: x
         memData: x
-        pc: 28
+        pc: +4
 
 sub s1, t1, t3
     inputs:
@@ -89,7 +139,7 @@ sub s1, t1, t3
         memWrite: 0
         memAddress: x
         memData: x
-        pc: 32
+        pc: +4
 
 and s2, t1, t2
     inputs:
@@ -99,7 +149,7 @@ and s2, t1, t2
         memWrite: 0
         memAddress: x
         memData: x
-        pc: 36
+        pc: +4
 
 or s2, t3, t4
     inputs:
@@ -109,17 +159,7 @@ or s2, t3, t4
         memWrite: 0
         memAddress: x
         memData: x
-        pc: 40
-
-slt s2, t0, t3
-    inputs:
-        instr: 0000000_11100_00101_010_10010_0110011
-        readData: x
-    expected output:
-        memWrite: 0
-        memAddress: x
-        memData: x
-        pc: 44
+        pc: +4
 
 slt s2, t3, t0
     inputs:
@@ -129,9 +169,19 @@ slt s2, t3, t0
         memWrite: 0
         memAddress: x
         memData: x
-        pc: 48
+        pc: +4
 
-At the end of this, s0 should be 697038, s1 should be -696900, and s2 should be 0.
+slt s2, t0, t3
+    inputs:
+        instr: 0000000_11100_00101_010_10010_0110011
+        readData: x
+    expected output:
+        memWrite: 0
+        memAddress: x
+        memData: x
+        pc: +4
+
+At the end of this, s0 should be 489, s1 should be -351, and s2 should be 1.
 
 beq t0, t1, 32
     inputs:
@@ -141,7 +191,7 @@ beq t0, t1, 32
         memWrite: 0
         memAddress: x
         memData: x
-        pc: 52
+        pc: +4
 
 beq t0, s2, 32
     inputs:
@@ -151,4 +201,4 @@ beq t0, s2, 32
         memWrite: 0
         memAddress: x
         memData: x
-        pc: 84
+        pc: +32

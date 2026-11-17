@@ -33,23 +33,74 @@ module KWEB_S_test ();
 
   initial begin
 
-    //set t0-t4
-    dut_KWEB_S.dp.rf_32.rf[5] = 0;
-    dut_KWEB_S.dp.rf_32.rf[6] = 69;
-    dut_KWEB_S.dp.rf_32.rf[7] = 6969;
-    dut_KWEB_S.dp.rf_32.rf[28] = 696969;
-    dut_KWEB_S.dp.rf_32.rf[29] = 69696969;
-
     //reset pc
     reset = 1'b1;
 
-    //flags for lw
+    //test addi instructions
+    $display("\n\n\nBegin addi testing:");
+    instr = 32'b000000000000_00000_000_00101_0010011;
+    #40 reset = 1'b0;
+    #10
+    $display(
+        "%t memWrite = %b, memAddress = %d, memData = %d, pc = %d",
+        $time,
+        memWrite,
+        memAddress,
+        memData,
+        pc
+    );
+    instr = 32'b000001000101_00000_000_00110_0010011;
+    readData = 42;
+    #10
+    $display(
+        "%t memWrite = %b, memAddress = %d, memData = %d, pc = %d",
+        $time,
+        memWrite,
+        memAddress,
+        memData,
+        pc
+    );
+    instr = 32'b000001000011_00000_000_00111_0010011;
+    readData = 42;
+    #10
+    $display(
+        "%t memWrite = %b, memAddress = %d, memData = %d, pc = %d",
+        $time,
+        memWrite,
+        memAddress,
+        memData,
+        pc
+    );
+    instr = 32'b000101011111_00110_000_11100_0010011;
+    readData = 42;
+    #10
+    $display(
+        "%t memWrite = %b, memAddress = %d, memData = %d, pc = %d",
+        $time,
+        memWrite,
+        memAddress,
+        memData,
+        pc
+    );
+    instr = 32'b111001110111_11100_000_11101_0010011;
+    readData = 42;
+    #10
+    $display(
+        "%t memWrite = %b, memAddress = %d, memData = %d, pc = %d",
+        $time,
+        memWrite,
+        memAddress,
+        memData,
+        pc
+    );
+    $display("%t, t0 = %d, \nt1 = %d, \nt2 = %d, \nt3 = %d, \nt4 = %d", $time,
+             dut_KWEB_S.dp.rf_32.rf[5], dut_KWEB_S.dp.rf_32.rf[6], dut_KWEB_S.dp.rf_32.rf[7],
+             dut_KWEB_S.dp.rf_32.rf[28], dut_KWEB_S.dp.rf_32.rf[29]);
 
     //test lw instructions
     $display("\n\n\nBegin lw testing:");
     instr = 32'b000000000000_00110_010_01000_0000011;
     readData = 42;
-    #40 reset = 1'b0;
     #10
     $display(
         "%t memWrite = %b, memAddress = %d, memData = %d, pc = %d",
@@ -161,7 +212,7 @@ module KWEB_S_test ();
         memData,
         pc
     );
-    instr = 32'b0000000_11100_00101_010_10010_0110011;
+    instr = 32'b0000000_00101_11100_010_10010_0110011;
     #10
     $display(
         "%t memWrite = %b, memAddress = %d, memData = %d, pc = %d",
@@ -171,7 +222,7 @@ module KWEB_S_test ();
         memData,
         pc
     );
-    instr = 32'b0000000_00101_11100_010_10010_0110011;
+    instr = 32'b0000000_11100_00101_010_10010_0110011;
     #10
     $display(
         "%t memWrite = %b, memAddress = %d, memData = %d, pc = %d",
@@ -196,7 +247,7 @@ module KWEB_S_test ();
         memData,
         pc
     );
-    instr = 32'b0000001_10010_00101_000_00000_1100011;
+    instr = 32'b0000001_00101_00101_000_00000_1100011;
     #10
     $display(
         "%t memWrite = %b, memAddress = %d, memData = %d, pc = %d",
