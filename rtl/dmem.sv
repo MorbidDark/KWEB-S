@@ -1,21 +1,20 @@
-module dmem #(
-    parameter int width = 8,
-    parameter int depth = 8,
-    parameter int addr_width = 3
-) (
-    input logic [addr_width-1:0] a,
+`timescale 1ns / 1ps
+
+module dmem (
+    input logic [31:0] a,
     input logic we,
     clk,
-    input logic [width-1:0] wd,
-    output logic [width-1:0] rd
+    input logic [31:0] wd,
+    output logic [31:0] rd
 );
 
-  logic [width-1:0] mem[depth-1:0];
+  logic [31:0] mem[10000];
 
-  assign rd = mem[a];
+  //To ignore address reads/writes that are not divisible by 4
+  assign rd = mem[a[15:2]];
 
   always_ff @(posedge clk) begin
-    if (we) mem[a] <= wd;
+    if (we) mem[a[15:2]] <= wd;
   end
 
 endmodule

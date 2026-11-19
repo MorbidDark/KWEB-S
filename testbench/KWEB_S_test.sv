@@ -137,7 +137,7 @@ module KWEB_S_test ();
 
     //Begin sw testing
     $display("\n\n\nBegin sw testing:");
-    //flags for sw
+    //sw t0, 0(t1)
     instr = 32'b0000000_00101_00110_010_00000_0100011;
     #10
     $display(
