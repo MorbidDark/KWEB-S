@@ -1,3 +1,5 @@
+`timescale 1ps / 1ps
+
 module mux_3 #(
     parameter int width = 8
 ) (

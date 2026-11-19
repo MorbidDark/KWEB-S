@@ -11,8 +11,8 @@ module KWEB_S (
     pc
 );
 
-  logic PCSrc, resultSrc, ALUSrc, regWrite, zero;
-  logic [1:0] immSrc;
+  logic PCSrc, ALUSrc, regWrite, zero;
+  logic [1:0] immSrc, resultSrc;
   logic [2:0] ALUControl;
 
   controller control (

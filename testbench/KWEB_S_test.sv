@@ -258,6 +258,42 @@ module KWEB_S_test ();
         pc
     );
 
+    //Begin jump testing
+    $display("\n\n\nBegin jump testing:");
+    //jal ra, -104
+    instr = 32'b11111001100111111111_00001_1101111;
+    #10
+    $display(
+        "%t memWrite = %b, memAddress = %d, memData = %d, pc = %d",
+        $time,
+        memWrite,
+        memAddress,
+        memData,
+        pc
+    );
+    //jal ra, 2000
+    instr = 32'b01111101000000000000_00001_1101111;
+    #10
+    $display(
+        "%t memWrite = %b, memAddress = %d, memData = %d, pc = %d",
+        $time,
+        memWrite,
+        memAddress,
+        memData,
+        pc
+    );
+    //jal ra, -80
+    instr = 32'b11111011000111111111_00001_1101111;
+    #10
+    $display(
+        "%t memWrite = %b, memAddress = %d, memData = %d, pc = %d",
+        $time,
+        memWrite,
+        memAddress,
+        memData,
+        pc
+    );
+
     $stop;
   end
 

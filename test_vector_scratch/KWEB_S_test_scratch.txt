@@ -193,7 +193,7 @@ beq t0, t1, 32
         memData: x
         pc: +4
 
-beq t0, s2, 32
+beq t0, t0, 32
     inputs:
         instr: 0000001_10010_00101_000_00000_1100011
         readData: x
@@ -202,3 +202,30 @@ beq t0, s2, 32
         memAddress: x
         memData: x
         pc: +32
+
+jal ra, -104
+    0110100
+    1_11111111_1_1111001100
+    instr: 11111001100111111111_00001_1101111
+    expected output:
+        memWrite: 0
+        memAddress: x
+        memData: x
+        pc: -104
+jal ra, 2000
+    0_00000000_0_1111101000
+    instr: 01111101000000000000_00001_1101111
+    expected output:
+        memWrite: 0
+        memAddress: x
+        memData: x
+        pc: +2000
+jal ra -80
+    01010000
+    1_11111111_1_1111011000
+    instr: 11111011000111111111_00001_1101111
+    expected output:
+        memWrite: 0
+        memAddress: x
+        memData: x
+        pc: -80

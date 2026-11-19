@@ -1,13 +1,13 @@
-`timescale 1ns/1ps
+`timescale 1ns / 1ps
 
 module datapath (
     input logic clk,
     reset,
     regWrite,
     ALUSrc,
-    resultSrc,
     PCSrc,
     input logic [1:0] immSrc,
+    resultSrc,
     input logic [31:7] instr,
     input logic [31:0] readData,
     input logic [2:0] ALUControl,
@@ -80,9 +80,10 @@ module datapath (
       .sum(PCTarget)
   );
 
-  mux_2 #(32) result_mux (
+  mux_3 #(32) result_mux (
       .d0(ALUResult),
       .d1(readData),
+      .d2(PCPlus4),
       .s (resultSrc),
       .y (result)
   );

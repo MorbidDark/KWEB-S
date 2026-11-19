@@ -5,18 +5,18 @@ module controller (
     zero,
     input logic [2:0] func3,
     output logic PCSrc,
-    resultSrc,
     memWrite,
     ALUSrc,
     regWrite,
     output logic [1:0] immSrc,
+    resultSrc,
     output logic [2:0] ALUControl
 );
 
-  logic branch;
+  logic branch, jump;
   logic [1:0] ALUOp;
 
-  assign PCSrc = branch & zero;
+  assign PCSrc = jump | (branch & zero);
 
   main_decoder dec (
       .op(op),
@@ -26,7 +26,8 @@ module controller (
       .ALUSrc(ALUSrc),
       .regWrite(regWrite),
       .immSrc(immSrc),
-      .ALUOp(ALUOp)
+      .ALUOp(ALUOp),
+      .jump(jump)
   );
 
   alu_decoder alu_dec (
