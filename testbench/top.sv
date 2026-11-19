@@ -43,9 +43,11 @@ module top ();
     reset = 1'b1;
     #22 reset = 1'b0;
     #300
-    if (data_mem.mem[100] === 25) $display($time, " Simulation Succeeded!");
+    //we are reading the word at address 100, but since the memory file in dmem does not count by 4s, we retrieve the word in the
+    //1100100 /4 = 11001 = 25th slot of the dmem mem file. However, you can see that the memAddress at this save call is in fact 100.
+    if (data_mem.mem[25] === 25) $display($time, " Simulation Succeeded!");
     else begin
-      $display($time, " Simulation failed! Expected 25, read %d", data_mem.mem[100]);
+      $display($time, " Simulation failed! Expected 25, read %d", data_mem.mem[25]);
     end
     $stop;
   end
